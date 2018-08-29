@@ -15,3 +15,6 @@ Assume the following:
 Total number of animals is greater than 2 but less than 1 million
 Total number of animals is an even number
 There are only positive integers in the vector
+
+Currently the vector numbers can be changed from inside the main function but upon refactoring,
+I will provide functionality to take in the input from the user directly in the command prompt.
