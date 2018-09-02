@@ -9,33 +9,50 @@
 #include <iostream>
 #include <vector>
 #include <unordered_set>
+#include <string>
 
 using namespace std;
 
-int solution(vector<int>& T){
-    int giveAway = 0.5*(T.size());
+int solution(vector<int>& Animals){
+    //giveAway will represent the amount of animals given and left
+    int giveAway = 0.5*(Animals.size());
     
-    unordered_set<int> s;
-    for(int i: T){
-        s.insert(i);
+    //Initializing a hash table and adding in every element from the vector
+    unordered_set<int> hTable;
+    for(int i: Animals){
+        hTable.insert(i);
     }
-    T.assign(s.begin(), s.end());
-    if(s.size()>giveAway){
+    
+    //Assigns new contents to the vector, resizes accordingly
+    //Vector now only has unique elements in it
+    Animals.assign(hTable.begin(), hTable.end());
+    
+    //If more than half are unique animals, then return half
+    //Otherwise return the size of the vector
+    if(Animals.size()>giveAway){
         return giveAway;
     }
     else{
-        return s.size();
+        return Animals.size();
     }
 }
 
 int main() {
-    vector<int> G{80, 80, 100000000, 80, 80, 80, 80, 80, 80, 123456789};
-    cout << "Entry: " << endl;
-    for (int i=0; i< G.size(); i++){
-        cout << G[i] << " ";
+    //Take in the number of elements that will be used for the input
+    cout << "Please enter an even number for amount of animals " << endl;
+    int initialCount;
+    cin >> initialCount;
+    //Initialize a vector of that size
+    vector <int> Animals;
+    cout << "Please enter " << initialCount << " numbers seperated by spaces" << endl;
+    //Take in elements and add them into a vector
+    for(int i=0;i<initialCount;i++){
+        int temp;
+        cin >> temp;
+        Animals.push_back(temp);
     }
-    int answer = solution(G);
+    int answer = solution(Animals);
     
     cout << "\n";
-    cout << "Number of distinct animals is: " << answer << endl;
+    cout << "Maximum number of distinct animals is: " << answer << endl;
 }
