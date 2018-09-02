@@ -8,17 +8,18 @@
 
 #include <iostream>
 #include <vector>
-#include <set>
+#include <unordered_set>
 
 using namespace std;
 
 int solution(vector<int>& T){
     int giveAway = 0.5*(T.size());
     
-    set<int> s;
-    for(int i=0;i<T.size();++i){
-        s.insert(T[i]);
+    unordered_set<int> s;
+    for(int i: T){
+        s.insert(i);
     }
+    T.assign(s.begin(), s.end());
     if(s.size()>giveAway){
         return giveAway;
     }
